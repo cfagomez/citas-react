@@ -1,7 +1,8 @@
 import React from 'react'
 import Error from './Error'
+import { nanoid } from 'nanoid'
 
-const Formulario = ({setListaPacientes, listaPacientes}) => {
+const Formulario = ({setListaPacientes, listaPacientes, pacienteEditar, setPacienteEditar, setModoEdicion, modoEdicion}) => {
 
     const [nombre, setNombre] = React.useState('')
     const [cuidador, setCuidador] = React.useState('')
@@ -9,6 +10,20 @@ const Formulario = ({setListaPacientes, listaPacientes}) => {
     const [fecha, setFecha] = React.useState('')
     const [sintomas, setSintomas] = React.useState('')
     const [error, setError] = React.useState(null)
+
+    React.useEffect (() => {
+
+        if (listaPacientes.length > 0) {
+
+            setNombre(pacienteEditar.nombre)
+            setCuidador(pacienteEditar.cuidador)
+            setEmail(pacienteEditar.email)
+            setFecha(pacienteEditar.fecha)
+            setSintomas(pacienteEditar.sintomas)
+
+        }
+
+    }, [pacienteEditar])
 
     const validarFormulario = (e) => {
 
@@ -29,10 +44,28 @@ const Formulario = ({setListaPacientes, listaPacientes}) => {
             cuidador,
             email,
             fecha,
-            sintomas
+            sintomas,
+            id: nanoid(5)
         }
 
-        setListaPacientes(...listaPacientes, objetoPaciente)
+        if (pacienteEditar) {
+
+            const listaEditada = listaPacientes.map( itemPaciente => pacienteEditar.id === itemPaciente.id ? objetoPaciente : itemPaciente)
+            setListaPacientes(listaEditada)
+            setPacienteEditar('')
+            setModoEdicion(false)
+
+        } else {
+
+            setListaPacientes([...listaPacientes, objetoPaciente])
+
+        }
+
+        setNombre('')
+        setCuidador('')
+        setEmail('')
+        setFecha('')
+        setSintomas('')
 
     }
 
@@ -137,7 +170,13 @@ const Formulario = ({setListaPacientes, listaPacientes}) => {
                 type='submit'
                 className='bg-green-600 w-full p-3 text-white uppercase font-bold hover:bg-green-800 cursor-pointer rounded-md transition-all mt-2'
             >
-                Agregar paciente
+                {
+                    modoEdicion ? (
+                        'Editar Paciente'
+                    ) : (
+                        'Agregar Paciente'
+                    )
+                }
             </button>
         </form>
     </div>

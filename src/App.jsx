@@ -6,6 +6,8 @@ import React from "react"
 function App() {
 
   const [listaPacientes, setListaPacientes] = React.useState([])
+  const [pacienteEditar, setPacienteEditar] = React.useState('')
+  const [modoEdicion, setModoEdicion] = React.useState(false)
 
   return (
     <div className="container mx-auto mt-20">
@@ -14,8 +16,17 @@ function App() {
         <Formulario 
           setListaPacientes={setListaPacientes}
           listaPacientes={listaPacientes}
+          pacienteEditar={pacienteEditar}
+          setPacienteEditar={setPacienteEditar}
+          setModoEdicion={setModoEdicion}
+          modoEdicion={modoEdicion}
         />
-        <ListadoPacientes />
+        <ListadoPacientes
+          listaPacientes={listaPacientes}
+          pacienteEditar={pacienteEditar}
+          setPacienteEditar={setPacienteEditar}
+          setModoEdicion={setModoEdicion}
+        />
       </div> 
     </div>
   )
