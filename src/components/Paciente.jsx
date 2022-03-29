@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Paciente = ({itemPaciente, pacienteEditar, setPacienteEditar, setModoEdicion}) => {
+const Paciente = ({itemPaciente, setPacienteEditar, setModoEdicion, idPaciente, listaPacientes, setListaPacientes}) => {
 
     const activarModoEdicion = (() => {
 
@@ -8,6 +8,13 @@ const Paciente = ({itemPaciente, pacienteEditar, setPacienteEditar, setModoEdici
         setPacienteEditar(itemPaciente)
 
     })
+
+    const eliminarPaciente = () => {
+
+        const listaPacienteActualizada = listaPacientes.filter( itemPaciente => itemPaciente.id !== idPaciente)
+        setListaPacientes(listaPacienteActualizada)
+
+    }
 
   return (
     <div className='mx-3 my-10 bg-white shadow-md px-5 py-10 rounded-xl'>
@@ -42,6 +49,7 @@ const Paciente = ({itemPaciente, pacienteEditar, setPacienteEditar, setModoEdici
             <button
                 className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
                 type='button'
+                onClick={eliminarPaciente}
             >
                 Eliminar
             </button>

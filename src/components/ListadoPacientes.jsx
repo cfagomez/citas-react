@@ -1,7 +1,7 @@
 import React from 'react'
 import Paciente from './Paciente'
 
-const ListadoPacientes = ({listaPacientes, pacienteEditar, setPacienteEditar, setModoEdicion}) => {
+const ListadoPacientes = ({listaPacientes, pacienteEditar, setPacienteEditar, setModoEdicion, setListaPacientes}) => {
   return (
     <div className='md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll my-5'>
         <h2 className='font-black text-3xl text-center'>Lista Pacientes</h2>
@@ -17,6 +17,9 @@ const ListadoPacientes = ({listaPacientes, pacienteEditar, setPacienteEditar, se
               pacienteEditar={pacienteEditar}
               setPacienteEditar={setPacienteEditar}
               setModoEdicion={setModoEdicion}
+              idPaciente={itemPaciente.id}
+              listaPacientes={listaPacientes}
+              setListaPacientes={setListaPacientes}
             />
           ))
         }

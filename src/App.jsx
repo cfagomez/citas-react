@@ -26,6 +26,7 @@ function App() {
           pacienteEditar={pacienteEditar}
           setPacienteEditar={setPacienteEditar}
           setModoEdicion={setModoEdicion}
+          setListaPacientes={setListaPacientes}
         />
       </div> 
     </div>
