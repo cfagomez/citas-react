@@ -25,7 +25,7 @@ const Formulario = ({setListaPacientes, listaPacientes, pacienteEditar, setPacie
 
     }, [pacienteEditar])
 
-    const validarFormulario = (e) => {
+    function validarFormulario(e) {
 
         e.preventDefault()
 
@@ -50,7 +50,7 @@ const Formulario = ({setListaPacientes, listaPacientes, pacienteEditar, setPacie
 
         if (pacienteEditar) {
 
-            const listaEditada = listaPacientes.map( itemPaciente => pacienteEditar.id === itemPaciente.id ? objetoPaciente : itemPaciente)
+            const listaEditada = listaPacientes.map(itemPaciente => pacienteEditar.id === itemPaciente.id ? objetoPaciente : itemPaciente)
             setListaPacientes(listaEditada)
             setPacienteEditar('')
             setModoEdicion(false)

@@ -9,6 +9,23 @@ function App() {
   const [pacienteEditar, setPacienteEditar] = React.useState('')
   const [modoEdicion, setModoEdicion] = React.useState(false)
 
+  React.useEffect (() => {
+
+    if (localStorage.getItem('listaPacientes')) {
+
+      const listaPacientesLocalStorage = JSON.parse(localStorage.getItem('listaPacientes'))
+      setListaPacientes(listaPacientesLocalStorage)
+
+    }
+
+  }, [])
+
+  React.useEffect(() => {
+
+    localStorage.setItem('listaPacientes', JSON.stringify(listaPacientes))
+
+  }, [listaPacientes])
+
   return (
     <div className="container mx-auto mt-20">
       <Header />
